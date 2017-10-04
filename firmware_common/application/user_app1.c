@@ -90,7 +90,8 @@ void UserApp1Initialize(void)
  
   /* If good initialization, set state to Idle */
   if( 1 )
-  {
+  { 
+    HEARTBEAT_OFF();
     UserApp1_StateMachine = UserApp1SM_Idle;
   }
   else
@@ -136,7 +137,12 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp1SM_Idle(void)
 {
-
+ static u32 u32counter=0;
+ u32counter++;
+ if(u32counter==COUNTER_LIMIT_MS)
+ { 
+   u32counter=0;
+ }
 } /* end UserApp1SM_Idle() */
     
 
